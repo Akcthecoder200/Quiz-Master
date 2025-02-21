@@ -3,6 +3,7 @@
 ## Overview
  Quiz Web is a **feature-rich quiz** platform built using **React.js, Tailwind CSS**, and JavaScript. It provides users with a fun and interactive quiz experience, including different quiz modes, **instant feedback**, and a **detailed history** of past attempts.
 
+
 ![quiz](asset/quiz.png)
 
 
