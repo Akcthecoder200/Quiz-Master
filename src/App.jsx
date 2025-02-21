@@ -5,7 +5,6 @@ import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import TimedQuiz from "./pages/TimedQuiz";
 
-
 function App() {
   return (
     <div className="min-h-screen bg-gray-100">
@@ -18,5 +17,4 @@ function App() {
     </div>
   );
 }
-
 export default App;

@@ -19,7 +19,7 @@
 ## Tech Stack 🛠️
 - **Frontend**: React.js, Tailwind CSS
 - **Storage**: LocalStorage (for quiz history and scores)
-- **Functionality**: JavaScript (for timer, shuffle logic, and answer validation)
+- **Functionality**: JavaScript (for timer, shuffle logic, and answer validation
 
 
 ## Installation 🏗️
