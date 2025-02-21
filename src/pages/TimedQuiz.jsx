@@ -1,13 +1,14 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { v4 as uuidv4 } from 'uuid';
-import { questions } from '../data/questions';
-import QuestionCard from '../components/QuestionCard';
-import QuizTimer from '../components/QuizTimer';
-import QuizResults from '../components/QuizResults';
-import AttemptHistory from '../components/AttemptHistory';
+import React, { useState, useEffect, useCallback } from "react";
+import { v4 as uuidv4 } from "uuid";
+import { questions } from "../data/questions";
+import QuestionCard from "../components/QuestionCard";
+import QuizTimer from "../components/QuizTimer";
+import QuizResults from "../components/QuizResults";
+import AttemptHistory from "../components/AttemptHistory";
 
 const SECONDS_PER_QUESTION = 30;
-const STORAGE_KEY = 'quiz_attempts';
+const STORAGE_KEY = "quiz_attempts";
+const TOTAL_QUESTIONS = 10;
 
 const TimedQuiz = () => {
   const [quizStarted, setQuizStarted] = useState(false);
@@ -26,7 +27,7 @@ const TimedQuiz = () => {
   });
 
   const [showFeedback, setShowFeedback] = useState(false);
-  const [openEndedAnswer, setOpenEndedAnswer] = useState(''); 
+  const [openEndedAnswer, setOpenEndedAnswer] = useState("");
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(attempts));
@@ -34,7 +35,7 @@ const TimedQuiz = () => {
 
   useEffect(() => {
     if (!quizStarted) return;
-    
+
     const timer = setInterval(() => {
       setQuizState((prev) => ({
         ...prev,
@@ -55,13 +56,15 @@ const TimedQuiz = () => {
   const moveToNextQuestion = useCallback(() => {
     setQuizState((prev) => {
       const nextIndex = prev.currentQuestionIndex + 1;
-      const isComplete = nextIndex >= questions.length;
+      const isComplete = nextIndex >= TOTAL_QUESTIONS;
 
       if (isComplete) {
         const score = prev.answers.reduce((acc, answer, index) => {
           const question = questions[index];
           if (question.type === "open-ended") {
-            return answer.toLowerCase() === question.correctAnswer.toLowerCase() ? acc + 1 : acc;
+            return answer.toLowerCase() === question.correctAnswer.toLowerCase()
+              ? acc + 1
+              : acc;
           } else {
             return answer === question.correctAnswer ? acc + 1 : acc;
           }
@@ -74,7 +77,7 @@ const TimedQuiz = () => {
           id: uuidv4(),
           date: new Date().toISOString(),
           score,
-          totalQuestions: questions.length,
+          totalQuestions: TOTAL_QUESTIONS,
           timeSpent,
         };
 
@@ -87,7 +90,7 @@ const TimedQuiz = () => {
         };
       }
 
-      setOpenEndedAnswer('');
+      setOpenEndedAnswer("");
 
       return {
         ...prev,
@@ -115,8 +118,9 @@ const TimedQuiz = () => {
     if (!currentQuestion) return;
 
     const isCorrect =
-      openEndedAnswer.trim().toLowerCase() === currentQuestion.correctAnswer.toLowerCase();
-  
+      openEndedAnswer.trim().toLowerCase() ===
+      currentQuestion.correctAnswer.toLowerCase();
+
     setQuizState((prev) => ({
       ...prev,
       answers: [
@@ -155,13 +159,17 @@ const TimedQuiz = () => {
         <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg text-center">
           <h1 className="text-2xl font-bold mb-4">📜 Quiz Instructions</h1>
           <ul className="text-left list-disc list-inside text-gray-700">
-            <li>You have <strong>30 seconds</strong> to answer each question.</li>
-            <li>There is <strong>no cheating</strong> allowed! 🚫</li>
+            <li>
+              You have <strong>30 seconds</strong> to answer each question.
+            </li>
+            <li>
+              There is <strong>no cheating</strong> allowed! 🚫
+            </li>
             <li>Try your best and aim for the highest score.</li>
             <li>The quiz will start once you click the button below.</li>
           </ul>
-          <button 
-            onClick={startQuiz} 
+          <button
+            onClick={startQuiz}
             className="mt-6 px-6 py-2 bg-blue-500 text-white font-bold rounded-lg hover:bg-blue-600 transition"
           >
             Start Quiz 🚀
@@ -170,7 +178,7 @@ const TimedQuiz = () => {
       </div>
     );
   }
- 
+
   if (quizState.isComplete) {
     return (
       <div className="min-h-screen bg-gray-100 py-12 px-4">
@@ -193,15 +201,20 @@ const TimedQuiz = () => {
       <div className="max-w-4xl mx-auto space-y-8">
         <div className="flex items-center justify-between bg-white p-4 rounded-lg shadow-lg">
           <div className="text-lg font-semibold">
-            Question {quizState.currentQuestionIndex + 1} of {questions.length}
+            Question {quizState.currentQuestionIndex + 1} of {TOTAL_QUESTIONS}
           </div>
-          <QuizTimer timeRemaining={quizState.timeRemaining} onTimeUp={handleTimeUp} />
+          <QuizTimer
+            timeRemaining={quizState.timeRemaining}
+            onTimeUp={handleTimeUp}
+          />
         </div>
 
         {currentQuestion && (
           <QuestionCard
             question={currentQuestion}
-            selectedAnswer={quizState.answers[quizState.currentQuestionIndex] ?? null}
+            selectedAnswer={
+              quizState.answers[quizState.currentQuestionIndex] ?? null
+            }
             onSelectAnswer={handleAnswerSelect}
             showFeedback={showFeedback}
             openEndedAnswer={openEndedAnswer}
