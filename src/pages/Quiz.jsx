@@ -75,7 +75,7 @@ const Quiz = () => {
         <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg text-center">
           <h1 className="text-2xl font-bold mb-4">📜 Quiz Instructions</h1>
           <ul className="text-left list-disc list-inside text-gray-700">
-            <li>The quiz consists of <strong>5 random questions</strong>.</li>
+            <li>The quiz consists of <strong>10 random questions</strong>.</li>
             <li>Answer all questions and submit your responses.</li>
             <li>Take your time, but no cheating! 🚫</li>
             <li>Click the button below to begin.</li>
