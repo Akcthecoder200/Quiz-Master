@@ -3,6 +3,8 @@
 ## Overview
  Quiz Web is a **feature-rich quiz** platform built using **React.js, Tailwind CSS**, and JavaScript. It provides users with a fun and interactive quiz experience, including different quiz modes, **instant feedback**, and a **detailed history** of past attempts.
 
+ ![Screenshot 2025-02-21 233633](https://gist.github.com/user-attachments/assets/5b07824b-dfb5-4b00-96fd-66b22336fa35)
+
 ## Features 🚀
 - ⏳ **Timed Quiz**: Every question has a 30-second countdown to answer.
 - ❓ **Normal Quiz**: Users can attempt quizzes at their own pace.
@@ -14,7 +16,6 @@
 
 ## Tech Stack 🛠️
 - **Frontend**: React.js, Tailwind CSS
-- **State Management**: useState, useEffect
 - **Storage**: LocalStorage (for quiz history and scores)
 - **Functionality**: JavaScript (for timer, shuffle logic, and answer validation)
 
