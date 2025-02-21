@@ -5,7 +5,7 @@ import { Timer, Brain, Users, ChevronRight } from "lucide-react";
 export default function Home() {
   return (
     <div className="min-h-screen">
-      {/* Navbar */}
+     
 
       {/* Hero Section */}
       <section className="py-20 sm:py-32">

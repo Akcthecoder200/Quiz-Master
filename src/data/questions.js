@@ -28,5 +28,6 @@ export const questions = [
     text: "What is the chemical symbol for gold?",
     options: ["Ag", "Fe", "Au", "Cu"],
     correctAnswer: 2
-  }
+  },
+
 ];

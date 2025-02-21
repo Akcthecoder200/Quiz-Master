@@ -2,8 +2,8 @@ import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import Quiz from "./pages/Quiz";
 import Home from "./components/Home";
-import NonTimedQuiz from "./pages/NonTimedQuiz";
 import Navbar from "./components/Navbar";
+import TimedQuiz from "./pages/TimedQuiz";
 
 
 function App() {
@@ -12,8 +12,8 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/timed-quiz" element={<Quiz />} />
-        <Route path="/quiz" element={<NonTimedQuiz />} />
+        <Route path="/timed-quiz" element={<TimedQuiz />} />
+        <Route path="/quiz" element={<Quiz />} />
       </Routes>
     </div>
   );
