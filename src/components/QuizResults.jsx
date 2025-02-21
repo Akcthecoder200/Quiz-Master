@@ -21,13 +21,13 @@ const QuizResults = ({ attempt, onRetry }) => {
           <span className="text-lg font-semibold">{percentage}%</span>
         </div>
 
-        <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+        { attempt.timeSpent && <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
           <div className="flex items-center space-x-2">
             <Clock className="w-5 h-5 text-blue-500" />
             <span className="font-medium">Time Spent:</span>
           </div>
-          <span className="text-lg font-semibold">{attempt.timeSpent}s</span>
-        </div>
+           <span className="text-lg font-semibold">{attempt.timeSpent}s</span>
+        </div>}
 
         <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
           <div className="flex items-center space-x-2">

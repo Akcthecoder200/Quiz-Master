@@ -16,6 +16,7 @@ const Quiz = () => {
     timeRemaining: SECONDS_PER_QUESTION,
     isComplete: false,
     score: 0,
+    startTime: Date.now(),
   });
 
   const [attempts, setAttempts] = useState(() => {
@@ -57,13 +58,15 @@ const Quiz = () => {
           (acc, answer, index) => (answer === questions[index].correctAnswer ? acc + 1 : acc),
           0
         );
+        const endTime = Date.now();
+        const timeSpent = Math.round((endTime - prev.startTime) / 1000);
 
         const attempt = {
           id: uuidv4(),
           date: new Date().toISOString(),
           score,
           totalQuestions: questions.length,
-          timeSpent: questions.length * SECONDS_PER_QUESTION - prev.timeRemaining,
+          timeSpent,
         };
 
         setAttempts((prevAttempts) => [attempt, ...prevAttempts]);
