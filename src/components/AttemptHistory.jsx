@@ -1,6 +1,5 @@
-
-import React from 'react';
-import { History } from 'lucide-react';
+import React from "react";
+import { History } from "lucide-react";
 
 const AttemptHistory = ({ attempts }) => {
   if (attempts.length === 0) {
@@ -21,14 +20,17 @@ const AttemptHistory = ({ attempts }) => {
           >
             <div className="flex flex-col">
               <span className="font-medium">
-                Score: {Math.round((attempt.score / attempt.totalQuestions) * 100)}%
+                Score:
+                {Math.round((attempt.score / attempt.totalQuestions) * 100)}%
               </span>
               <span className="text-sm text-gray-500">
                 {new Date(attempt.date).toLocaleDateString()}
               </span>
             </div>
             <div className="text-right">
-              <span className="font-medium">{attempt.timeSpent}s</span>
+              {attempt.timeSpent && (
+                <span className="font-medium">{attempt.timeSpent}s</span>
+              )}
               <span className="block text-sm text-gray-500">
                 {attempt.score}/{attempt.totalQuestions} correct
               </span>

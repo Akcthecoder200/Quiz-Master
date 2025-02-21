@@ -1,5 +1,5 @@
-import React from 'react';
-import { Trophy, Clock, Calendar } from 'lucide-react';
+import React from "react";
+import { Trophy, Clock, Calendar } from "lucide-react";
 
 const QuizResults = ({ attempt, onRetry }) => {
   const percentage = Math.round((attempt.score / attempt.totalQuestions) * 100);
